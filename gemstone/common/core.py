@@ -19,6 +19,12 @@ class Core(Generator):
     def features(self) -> List[Union["Core", "CoreFeature"]]:
         return [self]
 
+    def configure(self, addr, data):
+        pass
+
+    def eval(self):
+        return 0
+
 
 class ConfigurableCore(Core, Configurable):
     def __init__(self, config_addr_width, config_data_width):
@@ -51,3 +57,9 @@ class CoreFeature(Generator):
 
     def index(self):
         return self.__index
+
+    def configure(self, addr, data):
+        pass
+
+    def eval(self):
+        return 0
