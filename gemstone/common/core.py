@@ -19,10 +19,10 @@ class Core(Generator):
     def features(self) -> List[Union["Core", "CoreFeature"]]:
         return [self]
 
-    def configure(self, addr, data):
+    def configure_model(self, instr):
         pass
 
-    def eval(self, **kargs):
+    def eval_model(self, **kargs):
         return {}
 
 
@@ -32,7 +32,7 @@ class ConfigurableCore(Core, Configurable):
         Configurable.__init__(self, config_addr_width, config_data_width)
 
     @abstractmethod
-    def configure(self, instr):
+    def get_config_bitstream(self, instr):
         pass
 
     @abstractmethod
@@ -58,8 +58,8 @@ class CoreFeature(Generator):
     def index(self):
         return self.__index
 
-    def configure(self, addr, data):
+    def configure_model(self, instr):
         pass
 
-    def eval(self, **kargs):
+    def eval_model(self, **kargs):
         return {}
